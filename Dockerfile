@@ -1,6 +1,4 @@
-FROM node:latest
-WORKDIR /usr/src/app
-COPY . .
-# COPY package-docker.json ./package.json
-RUN npm install
-CMD ["node", "./bin/www"]
+FROM openjdk:latest
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
